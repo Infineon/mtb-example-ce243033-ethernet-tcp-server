@@ -8,30 +8,31 @@ This example uses the Ethernet Core FreeRTOS lwIP mbedtls library. This library 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-ce243033-ethernet-tcp-server)
 
-[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDMwMzMiLCJTcGVjIE51bWJlciI6IjAwMi00MzAzMyIsIkRvYyBUaXRsZSI6IlBETDogRXRoZXJuZXQgVENQIHNlcnZlciIsInJpZCI6ImtvamkubWl6dW1vdG9AaW5maW5lb24uY29tIiwiRG9jIHZlcnNpb24iOiIxLjAuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJBVVRPIiwiRG9jIEZhbWlseSI6IkFVVE8gTUNVIn0=)
+[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDMwMzMiLCJTcGVjIE51bWJlciI6IjAwMi00MzAzMyIsIkRvYyBUaXRsZSI6IlBETDogRXRoZXJuZXQgVENQIHNlcnZlciIsInJpZCI6ImtvamkubWl6dW1vdG9AaW5maW5lb24uY29tIiwiRG9jIHZlcnNpb24iOiIxLjEuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJBVVRPIiwiRG9jIEZhbWlseSI6IkFVVE8gTUNVIn0=)
 
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.8 or later (tested with v3.8)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.9 or later (tested with v3.9)
 - Board support package (BSP) minimum required version: 3.0.0
 - Programming language: C
-
+- Associated parts: [TRAVEO&trade; T2G family Cluster series](https://www.infineon.com/cms/en/product/microcontroller/32-bit-traveo-t2g-arm-cortex-microcontroller/32-bit-traveo-t2g-arm-cortex-for-cluster/) and [TRAVEO&trade; T2G family body high CYT6BJ series](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt6bj)
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
 
 - GNU Arm&reg; Embedded Compiler v14.2.1 (`GCC_ARM`) – Default value of `TOOLCHAIN`
 - Arm&reg; Compiler v6.22 (`ARM`)
-- IAR C/C++ Compiler v9.50.2 (`IAR`)
+- IAR C/C++ Compiler v9.70.2 (`IAR`)
 
 
 ## Supported kits (make variable 'TARGET')
 
 - [TRAVEO&trade; T2G Body high 16M Evaluation Kit](https://www.infineon.com/design-resources/finder-selection-tools/evaluation-board) (`KIT_T2G_B-H-16M_LITE`) – Default value of `TARGET`
-
+- [TRAVEO&trade; T2G Cluster 6M Lite Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_t2g_c-2d-6m_lite/) (`KIT_T2G_C-2D-6M_LITE`)
+- [TRAVEO&trade; T2G Cluster 4M Lite Kit](https://www.infineon.com/evaluation-board/KIT-T2G-C-2D-4M-LITE) (`KIT_T2G-C-2D-4M_LITE`)
 
 ## Hardware setup
-
+### KIT_T2G_B-H-16M_LITE
 This code example requires an Ethernet PHY connection to establish communication between the TCP server board and TCP client board. The Ethernet PHY connection is available by default in the supported kits. TRXP and TRXN should be connected to the other board's TRXP and TRXN from J20 via two jumpers as shown in **Figure 1**.
 
    **Figure 1.  Ethernet PHY connection**
@@ -40,6 +41,21 @@ This code example requires an Ethernet PHY connection to establish communication
 
 Also, both boards ground (GND) should be connected together to establish a common reference for the Ethernet communication.
 
+### KIT_T2G_C-2D-6M_LITE
+Connect from the client target board to the server target board by LAN cable.
+
+### KIT_T2G-C-2D-4M_LITE
+KIT_T2G-C-2D-4M_LITE does not have an onboard Ethernet PHY. However, you can use external
+Ethernet PHY boards by connecting them to the PMOD connector for Ethernet (X801) on the board. The
+supported shields for Ethernet communication protocol are listed below:
+- LAN8720 Ethernet board: The LAN8720 Ethernet board supports the RMII interface with a 10/100 Ethernet
+Transceiver (LAN8720). Default target PHY of this code example.
+- DP83848 Ethernet board: The DP83848 Ethernet board is an accessory board that includes an onboard
+Ethernet Transceiver (DP83848). <br>
+
+After that, Connect from the client target board to the server target board by LAN cable.
+
+You can find more details in [TRAVEO™ T2G Cluster 4M Lite Kit user guide](https://www.infineon.com/assets/row/public/documents/10/44/infineon-traveotmt2g-cluster-4m-lite-kit-user-guide-usermanual-en.pdf)
 
 ## Software setup
 
@@ -362,7 +378,7 @@ Resources  | Links
 -----------|----------------------------------
 Application notes  |  [AN235305](https://www.infineon.com/assets/row/public/documents/10/42/infineon-an235305-getting-started-with-traveo-t2g-family-mcus-in-modustoolbox-applicationnotes-en.pdf) – Getting started with TRAVEO™ T2G family MCUs in ModusToolbox&trade; <br> [AN220193](https://documentation.infineon.com/traveo/docs/qno1699881339239) – GPIO usage setup in TRAVEO&trade; T2G family
 Code examples  | [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
-Device documentation | [TRAVEO&trade; T2G body high 16M family MCUs datasheets](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt6bj/#documents) <br> [TRAVEO&trade; T2G body high family MCUs architecture/registers reference manuals](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body#documents)
+Device documentation | [TRAVEO&trade; T2G body high 16M family MCUs datasheets](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt6bj/#documents) <br> [TRAVEO&trade; T2G body high family MCUs architecture/registers reference manuals](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT4DN](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs datasheets for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents)
 Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board)
 Libraries on GitHub  | [mtb-pdl-cat1](https://github.com/Infineon/mtb-pdl-cat1) – Peripheral Driver Library (PDL) <br> [retarget-io](https://github.com/Infineon/retarget-io) – Utility library to retarget STDIO messages to a UART port　<br> [ethernet-connection-manager](https://github.com/Infineon/ethernet-connection-manager) – Library to manage ethernet connectivity　<br> [ethernet-core-freertos-lwip-mbedtls](https://github.com/Infineon/ethernet-core-freertos-lwip-mbedtls) – Library bundles FreeRTOS, lwIP TCP/IP stack, mbed TLS for security, ethernet connection manager (ECM), secure sockets interface, connectivity utilities and configuration files　<br> [ethernet-phy-driver](https://github.com/Infineon/ethernet-phy-driver) – Library for ethernet PHY-related interface APIs　<br> [secure-sockets](https://github.com/Infineon/secure-sockets) – Library provides APIs to create software that can send and/or receive data over the network using sockets
 Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development
@@ -383,7 +399,7 @@ Document title: *CE243033* – *PDL: Ethernet TCP server*
  Version | Description of change
  ------- | ---------------------
  1.0.0   | New code example
-
+ 1.1.0   | Added support for KIT_T2G_C-2D-6M_LITE and KIT_T2G_C-2D-4M_LITE, and updated to support ModusToolbox&trade; v3.9
 <br>
 
 All referenced product or service names and trademarks are the property of their respective owners.
